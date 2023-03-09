@@ -1,0 +1,21 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+    <!-- changing-->
+    {% if myForm.errors %}
+    <p style="color:red;"> Wrong data. Please check</p>
+    {% endif %}
+
+    <form action="" method="POST">% csrf_token %
+
+        </table>
+            {{myForm.as-table}}
+        </table>
+
+        <input type="submit" value="send">
+    </form>
+
+{% endblock %}
