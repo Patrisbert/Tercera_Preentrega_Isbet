@@ -13,5 +13,5 @@ class SellerForm(forms.Form):
 class DeliveryForm(forms.Form):
     name = forms.CharField()
     number = forms.IntegerField()
-    delivered = forms.BooleanField
+    
     

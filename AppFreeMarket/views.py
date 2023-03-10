@@ -7,6 +7,13 @@ from AppFreeMarket.forms import BuyerForm, SellerForm, DeliveryForm
 def home(request):
     return render(request, 'home.html')
 
+def product(self):
+    product=Delivery(name="item", number=13245)
+    product.save()
+    
+    textDoc = f'---> Delivery: {Delivery.name} number: {Delivery.number}'
+    return HttpResponse(textDoc)
+
 def buyer(request):
     return render(request, 'buyer.html')
 
@@ -71,11 +78,11 @@ def searchDelivery(request):
     return render(request, 'searchDelivery.html')
 
 def search(request):
-    if request.GET['delivery']:
-        delivery = request.GET['delivery']
-        name = Delivery.onjects.filter(delivery__icontains=delivery)
+    if request.GET['number']:
+        number = request.GET['number']
+        products = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, 'home.html', {'delivery':delivery})
+        return render(request, 'home.html', {'product':products, 'number':number})
     else:
         response = f'No information to show.'
     return render(request, 'inicio.html', {'response':response})
