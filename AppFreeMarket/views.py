@@ -82,7 +82,7 @@ def search(request):
         number = request.GET['number']
         products = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, 'home.html', {'product':products, 'number':number})
+        return render(request, 'searcResults.html', {'product':products, 'number':number})
     else:
         response = f'No information to show.'
     return render(request, 'inicio.html', {'response':response})
