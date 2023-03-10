@@ -9,10 +9,10 @@
     <p style="color:red;"> Wrong data. Please check</p>
     {% endif %}
 
-    <form action="" method="POST">% csrf_token %
+    <form action="" method="POST">{% csrf_token %}
 
         </table>
-            {{myForm.as-table}}
+            {{myForm.as_table}}
         </table>
 
         <input type="submit" value="send">
