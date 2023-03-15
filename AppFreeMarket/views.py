@@ -11,19 +11,10 @@ def product(self):
     product=Delivery(name="item", number=13245)
     product.save()
     
-    textDoc = f'---> Delivery: {Delivery.name} number: {Delivery.number}'
+    textDoc = f'---> Delivery: {product.name} number: {product.number}'
     return HttpResponse(textDoc)
 
 def buyer(request):
-    return render(request, 'buyer.html')
-
-def seller(request):
-    return render(request, 'seller.html')
-
-def delivery(request):
-    return render(request, 'delivery.html')
-
-def buyers(request):
     if request.method == 'POST':
         myForm = BuyerForm(request.POST)
 
@@ -40,7 +31,7 @@ def buyers(request):
     
     return render(request, 'buyer.html', {'myForm':myForm})
 
-def sellers(request):
+def seller(request):
     if request.method == 'POST':
         myForm = SellerForm(request.POST)
 
@@ -57,7 +48,7 @@ def sellers(request):
     
     return render(request, 'seller.html', {'myForm':myForm})
 
-def deliveries(request):
+def delivery(request):
     if request.method == 'POST':
         myForm = DeliveryForm(request.POST)
 
@@ -66,8 +57,8 @@ def deliveries(request):
         if myForm.is_valid:
 
             info = myForm.cleaned_data
-            deivery = Delivery(name=info['name'], number=info['number'], delivered=info['delivered'])
-            deivery.save()
+            product = Delivery(name=info['name'], number=info['number'])
+            product.save()
             return render(request, 'home.thml')
     else:
         myForm = DeliveryForm()
@@ -80,12 +71,9 @@ def searchDelivery(request):
 def search(request):
     if request.GET['number']:
         number = request.GET['number']
-        products = Delivery.objects.filter(number__icontains=number)
+        product = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, 'searcResults.html', {'product':products, 'number':number})
+        return render(request, 'home.html', {'product':product, 'number':number})
     else:
-        response = f'No information to show.'
-    return render(request, 'inicio.html', {'response':response})
-
-
-
+        response = f'No information to display.'
+    return render(request, 'home.html', {'response':response})
