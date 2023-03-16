@@ -20,7 +20,7 @@ def buyer(request):
 
         print(myForm)
 
-        if myForm.is_valid:
+        if myForm.is_valid():
 
             info = myForm.cleaned_data
             buyer = Buyer(name=info['name'], surname=info['surname'], email=info['email'])
@@ -37,7 +37,7 @@ def seller(request):
 
         print(myForm)
 
-        if myForm.is_valid:
+        if myForm.is_valid():
 
             info = myForm.cleaned_data
             seller = Seller(name=info['name'], surname=info['surname'], email=info['email'])
@@ -54,7 +54,7 @@ def delivery(request):
 
         print(myForm)
 
-        if myForm.is_valid:
+        if myForm.is_valid():
 
             info = myForm.cleaned_data
             product = Delivery(name=info['name'], number=info['number'])
@@ -71,9 +71,9 @@ def searchDelivery(request):
 def search(request):
     if request.GET["number"]:
         number = request.GET["number"]
-        product = Delivery.objects.filter(number__icontains=number)
+        products = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, "home.html", {"product":product, "number":number})
+        return render(request, "searchResults.html", {"product":products})
     else:
         response = "No information to display."
     return render(request, "home.html", {"response":response})

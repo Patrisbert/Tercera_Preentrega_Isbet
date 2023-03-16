@@ -7,6 +7,19 @@
     <title>Document</title>
 </head>
 <body>
-    
+ <h2>Search Results:</h2>
+ 
+ {% if product %}
+
+ <ul>
+    {% for product in products %}
+        <li>{{products.name}}</li>
+        <li>{{products.number}}</li>
+    {% endfor %}
+
+ </ul>
+
+ {% endif %}
+
 </body>
 </html>
