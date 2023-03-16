@@ -14,7 +14,6 @@ class Buyer(models.Model):
     email = models.EmailField()
 
 class Delivery(models.Model):
-    id=models.AutoField(primary_key=True)
     name = models.CharField(max_length=30)
     number = models.IntegerField()
     

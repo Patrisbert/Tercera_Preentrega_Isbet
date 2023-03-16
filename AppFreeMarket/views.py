@@ -69,11 +69,11 @@ def searchDelivery(request):
     return render(request, 'searchDelivery.html')
 
 def search(request):
-    if request.GET["number"]:
-        number = request.GET["number"]
+    if 'number' in request.GET:
+        number = request.GET['number']
         products = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, "searchResults.html", {"product":products})
+        return render(request, "searchResults.html", {"products":products})
     else:
         response = "No information to display."
-    return render(request, "home.html", {"response":response})
+    return HttpResponse(response)
