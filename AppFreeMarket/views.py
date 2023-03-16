@@ -25,7 +25,7 @@ def buyer(request):
             info = myForm.cleaned_data
             buyer = Buyer(name=info['name'], surname=info['surname'], email=info['email'])
             buyer.save()
-            return render(request, 'home.thml')
+            return render(request, 'home.html')
     else:
         myForm = BuyerForm()
     
@@ -42,7 +42,7 @@ def seller(request):
             info = myForm.cleaned_data
             seller = Seller(name=info['name'], surname=info['surname'], email=info['email'])
             seller.save()
-            return render(request, 'home.thml')
+            return render(request, 'home.html')
     else:
         myForm = SellerForm()
     
@@ -59,7 +59,7 @@ def delivery(request):
             info = myForm.cleaned_data
             product = Delivery(name=info['name'], number=info['number'])
             product.save()
-            return render(request, 'home.thml')
+            return render(request, 'home.html')
     else:
         myForm = DeliveryForm()
     
@@ -69,11 +69,11 @@ def searchDelivery(request):
     return render(request, 'searchDelivery.html')
 
 def search(request):
-    if request.GET['number']:
-        number = request.GET['number']
+    if request.GET["number"]:
+        number = request.GET["number"]
         product = Delivery.objects.filter(number__icontains=number)
 
-        return render(request, 'home.html', {'product':product, 'number':number})
+        return render(request, "home.html", {"product":product, "number":number})
     else:
-        response = f'No information to display.'
-    return render(request, 'home.html', {'response':response})
+        response = "No information to display."
+    return render(request, "home.html", {"response":response})

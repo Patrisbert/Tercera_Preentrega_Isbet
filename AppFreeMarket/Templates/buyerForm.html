@@ -7,9 +7,21 @@
     <title>Form - Add Buyer</title>
 </head>
 <body>
-    {% extends "AppFreeMarket/padre.html" %}
+    {% if myForm.errors %}
+    <p style="color:red;"> Wrong data. Please check.</p>
 
-    {% load static %}
+    {% endif %}
+    
+    <form action="" method="POST"> {% csrf_token %}
+
+        <table>
+            {{myForm.as_table }}
+
+        </table>
+
+        <input type="submit", value="send">
+        
+    </form>
     
 </body>
 </html>
